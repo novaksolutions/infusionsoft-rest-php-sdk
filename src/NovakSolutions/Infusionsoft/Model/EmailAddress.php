@@ -8,7 +8,12 @@
 
 namespace NovakSolutions\Infusionsoft\Model;
 
-
+/**
+ * Class EmailAddress
+ * @package NovakSolutions\Infusionsoft\Model
+ * @property string email
+ * @property string field
+ */
 class EmailAddress extends Model
 {
     protected static $fields = [

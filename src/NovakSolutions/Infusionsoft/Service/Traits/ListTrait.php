@@ -36,9 +36,9 @@ trait ListTrait
 
         //Replace question mark(s) in url with criteria if it's present
         $url = static::$endPoint;
-        if(property_exists(static::class, 'listUrlParameterToReplaceQuestionMark') && isset($criteria[static::$listUrlParameterToReplaceQuestionMark])){
-            $url = str_replace("?", $criteria[static::$listUrlParameterToReplaceQuestionMark], $url);
-            unset($criteria[static::$listUrlParameterToReplaceQuestionMark]);
+        if(property_exists(static::class, 'parameterToReplaceQuestionMark') && isset($criteria[static::$parameterToReplaceQuestionMark])){
+            $url = str_replace("?", $criteria[static::$parameterToReplaceQuestionMark], $url);
+            unset($criteria[static::$parameterToReplaceQuestionMark]);
         }
 
         foreach($criteria as $criteriaFieldName => $criterion){

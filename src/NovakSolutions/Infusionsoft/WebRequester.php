@@ -8,6 +8,8 @@
 
 namespace NovakSolutions\Infusionsoft;
 
+use NovakSolutions\Infusionsoft\Exception\RestException;
+
 class WebRequester
 {
     public $tokenMethod = self::AUTHORIZATION_HEADER;
@@ -27,13 +29,13 @@ class WebRequester
         return in_array($requestVerb, ['POST', 'PUT', 'PATCH']);
     }
 
-    public function request($endPoint, $requestVerb, array $payload, $accessToken = null)
+    public function request($endPoint, $requestVerb, $payload, $accessToken = null)
     {
         if($accessToken == null){
             $accessToken = Registry::$defaultAccessToken;
         }
 
-        if(!in_array($requestVerb, ['GET', 'PATCH', 'PUT', 'DELETE'])){
+        if(!in_array($requestVerb, ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])){
             throw new RestException('Invalid http verb - ' . $requestVerb);
         }
 
@@ -59,7 +61,7 @@ class WebRequester
         }
         $headers = [
             'Accept: application/json, */*',
-            'Content-Type: '
+            'Content-Type: application/json'
         ];
         if($this->tokenMethod == '' . self::AUTHORIZATION_HEADER . ''){
             $headers[] = 'Authorization: Bearer ' . $accessToken;

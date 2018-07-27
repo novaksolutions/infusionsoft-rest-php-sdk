@@ -15,7 +15,7 @@ class ContactEmailService extends Service
     use Traits\ListTrait;
 
     public static $endPoint = '/contacts/?/emails';
-    public static $listUrlParameterToReplaceQuestionMark = 'contactId';
+    public static $parameterToReplaceQuestionMark = 'contactId';
     public static $arrayKey = 'emails';
     public static $class = Email::class;
 

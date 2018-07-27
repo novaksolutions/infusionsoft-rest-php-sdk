@@ -19,6 +19,7 @@ class Model
     const FIELD_TYPE_INT = 'int';
     const FIELD_TYPE_STRING = 'string';
 
+    protected static $serviceClassName = null;
     protected static $fields = [];
     protected $data = array();
 
@@ -54,7 +55,8 @@ class Model
             if(isset($this->data[$fieldName])){
                 return $this->data[$fieldName];
             }else{
-                return null;
+                $dummy = null;
+                return $dummy;
             }
         }else{
             throw new InvalidFieldException("Invalid Field Name: " . $fieldName);
@@ -85,7 +87,7 @@ class Model
         foreach($data as $key => $value){
             if(isset(static::$fields[$key])){
                 $fieldDetails = static::$fields[$key];
-                if(strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == self::FIELD_TYPE_ARRAY){
+                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == self::FIELD_TYPE_ARRAY){
                     $this->$key = [];
                     foreach($value as $object){
                         $this->$key[] = new $fieldDetails[1]($object);
@@ -109,10 +111,24 @@ class Model
                       $asArray[$key][] = $object->toArray();
                     }
                 } else {
+                    if($value instanceof \DateTime){
+                        $value = $value->format(\DateTime::ISO8601);
+                    }
                     $asArray[$key] = $value;
                 }
             }
         }
         return $asArray;
+    }
+
+    public function save(){
+        $serviceClassName = static::$serviceClassName;
+
+        if($this->id != null){
+            $serviceClassName::update($this->toArray());
+        } else {
+            $result = $serviceClassName::create($this->toArray());
+            $this->id = $result['id'];
+        }
     }
 }

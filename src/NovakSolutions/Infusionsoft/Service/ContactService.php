@@ -13,6 +13,7 @@ use NovakSolutions\Infusionsoft\Model\Contact;
 class ContactService extends Service
 {
     use Traits\ListTraitWithOrderBy;
+    use Traits\CreateTrait;
 
     public static $endPoint = '/contacts';
     public static $arrayKey = 'contacts';

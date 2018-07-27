@@ -7,6 +7,9 @@
  */
 
 namespace NovakSolutions\Infusionsoft\Service;
+use NovakSolutions\Infusionsoft\Model\Contact;
+use NovakSolutions\Infusionsoft\Model\EmailAddress;
+use NovakSolutions\Infusionsoft\Registry;
 use NovakSolutions\Infusionsoft\Service\ContactService;
 use PHPUnit\Framework\TestCase;
 
@@ -27,10 +30,15 @@ class ContactServiceTest extends TestCase
 
         var_dump($contacts);
         $this->assertArrayHasKey(0, $contacts);
-        $this->assertEquals(Contact::class, gettype($contacts[0]));
+        $this->assertTrue($contacts[0] instanceof Contact);
     }
 
     public function testCreate(){
+        $contact = new Contact();
+        $contact->email_addresses = [new EmailAddress(['email' => 'joey.novak@gmail.com', 'field' => 'EMAIL1'])];
+        $contact->birthday = new \DateTime();
+        $contact->save();
 
+        $this->assertTrue($contact->id >= 0);
     }
 }
