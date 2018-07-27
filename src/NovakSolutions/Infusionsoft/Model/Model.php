@@ -105,7 +105,7 @@ class Model
         foreach($this->data as $key => $value){
             if(isset(static::$fields[$key])){
                 $fieldDetails = static::$fields[$key];
-                if(strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == self::FIELD_TYPE_ARRAY){
+                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == self::FIELD_TYPE_ARRAY){
                     $asArray[$key] = [];
                     foreach($value as $object){
                       $asArray[$key][] = $object->toArray();
@@ -119,16 +119,5 @@ class Model
             }
         }
         return $asArray;
-    }
-
-    public function save(){
-        $serviceClassName = static::$serviceClassName;
-
-        if($this->id != null){
-            $serviceClassName::update($this->toArray());
-        } else {
-            $result = $serviceClassName::create($this->toArray());
-            $this->id = $result['id'];
-        }
     }
 }

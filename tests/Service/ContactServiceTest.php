@@ -20,15 +20,11 @@ class ContactServiceTest extends TestCase
     }
     public function testListWithOrderAndLimit(){
         $contacts = ContactService::find([], 'id', null, 1);
-
-        var_dump($contacts);
         $this->assertArrayHasKey( 0, $contacts);
     }
 
     public function testListWithCriteria(){
         $contacts = ContactService::find(['email' => 'joey.novak@gmail.com'], 'id', null, 1);
-
-        var_dump($contacts);
         $this->assertArrayHasKey(0, $contacts);
         $this->assertTrue($contacts[0] instanceof Contact);
     }

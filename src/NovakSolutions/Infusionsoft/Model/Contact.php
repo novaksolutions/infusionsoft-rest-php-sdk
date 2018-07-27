@@ -19,6 +19,8 @@ use NovakSolutions\Infusionsoft\Service\ContactService;
  */
 class Contact extends Model
 {
+    use Traits\SavableTrait;
+
     protected static $serviceClassName = ContactService::class;
 
     protected static $fields = [
