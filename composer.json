@@ -1,0 +1,22 @@
+{
+    "name": "novaksolutions/infusionsoft-rest-php-sdk",
+    "description": "An easy to use SDK for Infusionsoft's API (REST API)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "joeynovak",
+            "email": "joey.novak@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "NovakSolutions\\Infusionsoft\\": "src/NovakSolutions/Infusionsoft" }
+    },
+    "autoload-dev": {
+        "psr-4": { "NovakSolutions\\Infusionsoft\\": "tests" }
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "~6.5"
+    }
+}

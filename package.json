@@ -1,0 +1,15 @@
+{
+  "name": "infusionsoft-rest-php-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit tests",
+    "build": "docker build . -f Dockerfile_56 -t infusionsoft-rest-php-sdk:develop"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,12 @@
+version: '3'
+services:
+  www:
+    image: "infusionsoft-rest-php-sdk:develop"
+    ports:
+     - "80:80"
+    volumes:
+    - ./:/var/www/html
+    environment:
+      INFUSIONSOFT_CLIENT_ID: "client_id"
+      INFUSIONSOFT_CLIENT_SECRET: "client_secret"
+      ACCESS_TOKEN: "test"
