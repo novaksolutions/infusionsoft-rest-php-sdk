@@ -10,13 +10,13 @@ namespace NovakSolutions\Infusionsoft\Service;
 use NovakSolutions\Infusionsoft\Registry;
 use PHPUnit\Framework\TestCase;
 
-class ContactServiceTest extends TestCase
+class ContactEmailServiceTest extends TestCase
 {
     public function setUp(){
         Registry::init();
     }
     public function testList(){
-        $emails = ContactEmailService::find(['contactId' => '1']);
+        $emails = ContactEmailService::find(['contactId' => '91918']);
 
         var_dump($emails);
     }

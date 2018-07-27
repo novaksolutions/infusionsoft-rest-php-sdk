@@ -8,7 +8,7 @@
 
 namespace NovakSolutions\Infusionsoft\Service;
 
-use NovakSolutions\Infusionsoft\Model\Contact;
+use NovakSolutions\Infusionsoft\Model\Email;
 
 class ContactEmailService extends Service
 {

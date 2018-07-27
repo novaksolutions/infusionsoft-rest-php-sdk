@@ -15,7 +15,9 @@
     "autoload-dev": {
         "psr-4": { "NovakSolutions\\Infusionsoft\\": "tests" }
     },
-    "require": {},
+    "require": {
+        "php": "^5.4 || ^7.0"
+    },
     "require-dev": {
         "phpunit/phpunit": "~6.5"
     }
