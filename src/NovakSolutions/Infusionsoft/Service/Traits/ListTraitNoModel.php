@@ -17,7 +17,7 @@ use NovakSolutions\Infusionsoft\Model\Model;
 use NovakSolutions\Infusionsoft\Registry;
 use NovakSolutions\Infusionsoft\WebRequestResult;
 
-trait ListTrait
+trait ListTraitNoModel
 {
     /**
      * @param array $criteria
@@ -76,16 +76,7 @@ trait ListTrait
         }
 
         //Interperet Response
-        $objects = json_decode($result->body, true);
-        $results = [];
-
-        if(static::$arrayKey != null){
-            $objects = $objects[static::$arrayKey];
-        }
-
-        foreach($objects as $objectAsArray){
-            $results[] = new static::$class($objectAsArray);
-        }
+        $results = json_decode($result->body, true);
 
         return $results;
     }

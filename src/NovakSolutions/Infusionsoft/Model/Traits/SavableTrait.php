@@ -11,8 +11,8 @@ trait SavableTrait
 {
     public function save($reloadFromReturn = true){
         $serviceClassName = static::$serviceClassName;
-
-        if($this->id != null){
+        $primaryKeyFieldName = static::$primaryKeyFieldName;
+        if($this->$primaryKeyFieldName != null){
             $serviceClassName::update($this->toArray());
         } else {
             $result = $serviceClassName::create($this->toArray());

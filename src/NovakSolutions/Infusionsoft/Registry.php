@@ -13,7 +13,7 @@ class Registry
 {
     /** @var WebRequester $WebRequester */
     public static $WebRequester = null;
-    public static $defaultAccessToken = 'a6y3286y5uwz2g2etjc9uteg';
+    public static $defaultAccessToken = 'r3wcnwxqfbbxndyehzjesb8f';
     public static function init(){
         static::$WebRequester = new WebRequester();
     }

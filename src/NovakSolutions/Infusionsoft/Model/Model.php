@@ -10,7 +10,7 @@ namespace NovakSolutions\Infusionsoft\Model;
 
 
 use NovakSolutions\Infusionsoft\Exception\InvalidFieldException;
-use function PHPSTORM_META\type;
+//use function PHPSTORM_META\type;
 
 class Model
 {
@@ -19,6 +19,7 @@ class Model
     const FIELD_TYPE_INT = 'int';
     const FIELD_TYPE_STRING = 'string';
 
+    protected static $primaryKeyFieldName = 'id';
     protected static $serviceClassName = null;
     protected static $fields = [];
     protected $data = array();

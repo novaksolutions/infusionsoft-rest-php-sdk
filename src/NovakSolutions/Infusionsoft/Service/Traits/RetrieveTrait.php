@@ -17,7 +17,7 @@ use NovakSolutions\Infusionsoft\Model\Model;
 use NovakSolutions\Infusionsoft\Registry;
 use NovakSolutions\Infusionsoft\WebRequestResult;
 
-trait ListTrait
+trait RetrieveTrait
 {
     /**
      * @param array $criteria
@@ -30,31 +30,12 @@ trait ListTrait
      * @throws \ReflectionException
      */
 
-    public static function find(array $criteria = [], $limit = null, $offset = null, $accessToken = null){
+    public static function get($id){
         //Build Request
         $parameters = [];
 
         //Replace question mark(s) in url with criteria if it's present
-        $url = static::$endPoint;
-        if(property_exists(static::class, 'parameterToReplaceQuestionMark') && isset($criteria[static::$parameterToReplaceQuestionMark])){
-            $url = str_replace("?", $criteria[static::$parameterToReplaceQuestionMark], $url);
-            unset($criteria[static::$parameterToReplaceQuestionMark]);
-        }
-
-        foreach($criteria as $criteriaFieldName => $criterion){
-            if(!in_array($criteriaFieldName, static::$findByFields)){
-                throw new FindException("Invalid field name: " . $criteriaFieldName . ' in service ' . (new \ReflectionClass(self))->getShortName());
-            }
-            $parameters[$criteriaFieldName] = $criterion;
-        }
-
-        if($limit != null){
-            $parameters['limit'] = $limit;
-        }
-
-        if($offset != null){
-            $parameters['offset'] = $offset;
-        }
+        $url = static::$endPoint . '/' . $id;
 
         //Make Call...
         /** @var WebRequestResult $result */
@@ -77,16 +58,9 @@ trait ListTrait
 
         //Interperet Response
         $objects = json_decode($result->body, true);
-        $results = [];
 
-        if(static::$arrayKey != null){
-            $objects = $objects[static::$arrayKey];
-        }
+        $result = new static::$class($objects);
 
-        foreach($objects as $objectAsArray){
-            $results[] = new static::$class($objectAsArray);
-        }
-
-        return $results;
+        return $result;
     }
 }
