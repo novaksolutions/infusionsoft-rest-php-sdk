@@ -25,15 +25,15 @@ class Contact extends Model
 
     protected static $fields = [
         'addresses' => ['array', Address::class],
-        "anniversary" => Model::FIELD_TYPE_DATETIME,
-        "birthday" => Model::FIELD_TYPE_DATETIME,
+        "anniversary" => FieldTypes::DATETIME,
+        "birthday" => FieldTypes::DATETIME,
         'company' => [ContactCompany::class],
-        "contact_type" => Model::FIELD_TYPE_STRING,
+        "contact_type" => FieldTypes::STRING,
         'custom_fields' => ['array', CustomField::class],
-        "date_created" => Model::FIELD_TYPE_DATETIME,
+        "date_created" => FieldTypes::DATETIME,
         'email_addresses' => ['array', EmailAddress::class],
         'fax_numbers' => ['array', FaxNumber::class],
-        'id' => Model::FIELD_TYPE_INT,
+        'id' => FieldTypes::INT,
         'phone_numbers' => ['array', PhoneNumber::class],
         'social_accounts' => ['array', SocialAccount::class],
     ];

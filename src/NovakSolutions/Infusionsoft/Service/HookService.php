@@ -15,6 +15,8 @@ class HookService extends Service
     use Traits\ListTrait;
     use Traits\RetrieveTrait;
     use Traits\CreateTrait;
+    use Traits\UpdateTrait;
+    use Traits\DeleteTrait;
 
     public static $arrayKey = null;
     public static $class = Hook::class;

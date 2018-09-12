@@ -9,10 +9,12 @@
 namespace NovakSolutions\Infusionsoft\Model;
 
 
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+
 class SocialAccount extends Model
 {
     protected static $fields = [
-        "name" => Model::FIELD_TYPE_STRING,
-        "type" =>  Model::FIELD_TYPE_STRING,
+        "name" => FieldTypes::STRING,
+        "type" =>  FieldTypes::STRING,
     ];
 }

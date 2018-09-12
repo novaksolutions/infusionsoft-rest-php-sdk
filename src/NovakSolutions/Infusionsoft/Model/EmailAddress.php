@@ -8,6 +8,8 @@
 
 namespace NovakSolutions\Infusionsoft\Model;
 
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+
 /**
  * Class EmailAddress
  * @package NovakSolutions\Infusionsoft\Model
@@ -17,7 +19,7 @@ namespace NovakSolutions\Infusionsoft\Model;
 class EmailAddress extends Model
 {
     protected static $fields = [
-        "email" => Model::FIELD_TYPE_STRING,
-        "field" =>  Model::FIELD_TYPE_STRING
+        "email" => FieldTypes::STRING,
+        "field" =>  FieldTypes::STRING
     ];
 }

@@ -9,16 +9,18 @@
 namespace NovakSolutions\Infusionsoft\Model;
 
 
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+
 class Address extends Model
 {
 
     protected static $fields = [
-        "country_code" => Model::FIELD_TYPE_STRING,
-          "line1" =>  Model::FIELD_TYPE_STRING,
-          "line2" =>  Model::FIELD_TYPE_STRING,
-          "locality" =>  Model::FIELD_TYPE_STRING,
-          "region" =>  Model::FIELD_TYPE_STRING,
-          "zip_code" =>  Model::FIELD_TYPE_STRING,
-          "zip_four" =>  Model::FIELD_TYPE_STRING
+        "country_code" => FieldTypes::STRING,
+          "line1" =>  FieldTypes::STRING,
+          "line2" =>  FieldTypes::STRING,
+          "locality" =>  FieldTypes::STRING,
+          "region" =>  FieldTypes::STRING,
+          "zip_code" =>  FieldTypes::STRING,
+          "zip_four" =>  FieldTypes::STRING
     ];
 }

@@ -8,8 +8,6 @@
 
 namespace NovakSolutions\Infusionsoft\Service\Traits;
 
-use NovakSolutions\Infusionsoft\AssociativeArrayToApiModel;
-use NovakSolutions\Infusionsoft\Exception\FindException;
 use NovakSolutions\Infusionsoft\Exception\BadRequestException;
 use NovakSolutions\Infusionsoft\Exception\UnAuthorizedException;
 use NovakSolutions\Infusionsoft\Exception\UnknownResponseException;
@@ -25,7 +23,7 @@ trait RetrieveTrait
      * @param null $ascendingOrDescending
      * @param null $limit
      * @param null $offset
-     * @return Model[]
+     * @return Model
      * @throws \NovakSolutions\Infusionsoft\Exception\FindException
      * @throws \ReflectionException
      */

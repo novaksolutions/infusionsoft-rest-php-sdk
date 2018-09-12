@@ -75,6 +75,9 @@ class WebRequester
         $result->body = $response;
         $result->responseCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
+        Registry::$logger->debug("Body was: " . $result->body);
+        Registry::$logger->debug("Response Code was: " . $result->responseCode);
+
         curl_close($ch);
 
         return $result;

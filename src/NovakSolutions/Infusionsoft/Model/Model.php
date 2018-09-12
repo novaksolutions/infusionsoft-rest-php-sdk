@@ -10,15 +10,11 @@ namespace NovakSolutions\Infusionsoft\Model;
 
 
 use NovakSolutions\Infusionsoft\Exception\InvalidFieldException;
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 //use function PHPSTORM_META\type;
 
 class Model
 {
-    const FIELD_TYPE_ARRAY = 'array';
-    const FIELD_TYPE_DATETIME = 'datetime';
-    const FIELD_TYPE_INT = 'int';
-    const FIELD_TYPE_STRING = 'string';
-
     protected static $primaryKeyFieldName = 'id';
     protected static $serviceClassName = null;
     protected static $fields = [];
@@ -88,7 +84,7 @@ class Model
         foreach($data as $key => $value){
             if(isset(static::$fields[$key])){
                 $fieldDetails = static::$fields[$key];
-                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == self::FIELD_TYPE_ARRAY){
+                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == FieldTypes::AN_ARRAY){
                     $this->$key = [];
                     foreach($value as $object){
                         $this->$key[] = new $fieldDetails[1]($object);
@@ -103,10 +99,11 @@ class Model
     public function toArray()
     {
         $asArray = [];
+        /** @var Model[] $value */
         foreach($this->data as $key => $value){
             if(isset(static::$fields[$key])){
                 $fieldDetails = static::$fields[$key];
-                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == self::FIELD_TYPE_ARRAY){
+                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == FieldTypes::AN_ARRAY){
                     $asArray[$key] = [];
                     foreach($value as $object){
                       $asArray[$key][] = $object->toArray();
