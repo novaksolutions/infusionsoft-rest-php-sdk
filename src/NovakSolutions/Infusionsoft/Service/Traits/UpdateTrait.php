@@ -10,8 +10,13 @@ namespace NovakSolutions\Infusionsoft\Service\Traits;
 
 
 use NovakSolutions\Infusionsoft\Registry;
+use NovakSolutions\Infusionsoft\Service\Service;
 use NovakSolutions\Infusionsoft\WebRequestResult;
 
+/**
+ * Trait UpdateTrait
+ * @package NovakSolutions\Infusionsoft\Service\Traits
+ */
 trait UpdateTrait
 {
     /**
@@ -25,11 +30,15 @@ trait UpdateTrait
         $className = static::$class;
         $url = static::$endPoint . '/' . $data[$className::$primaryKeyFieldName];
 
+        foreach(static::getReadOnlyFields() as $field){
+            if(isset($data[$field])){
+                unset($data[$field]);
+            }
+        }
         //Make Call...
         /** @var WebRequestResult $result */
         $result = Registry::$WebRequester->request($url, 'PUT', json_encode($data), $accessToken);
-
-        self::throwExceptionIfError($result);
+        static::throwExceptionIfError($result);
 
         return true;
     }

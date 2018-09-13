@@ -9,6 +9,8 @@
 namespace NovakSolutions\Infusionsoft\Service\Traits;
 
 
+use NovakSolutions\Infusionsoft\Registry;
+
 trait DeleteTrait
 {
     /**

@@ -59,20 +59,8 @@ trait ListTraitNoModel
         /** @var WebRequestResult $result */
         $result = Registry::$WebRequester->request($url, 'GET', $parameters, null);
 
+        static::throwExceptionIfError($result);
         $objects = null;
-        switch($result->responseCode){
-            case 596:
-                throw new BadRequestException("Unknown Service");
-            case 401:
-                throw new UnAuthorizedException("Got 401 response from Infusionsoft during call to " . static::$endPoint);
-            case 400:
-                throw new BadRequestException("Got Bad Request Exception");
-                break;
-            case 200:
-                break;
-            default:
-                throw new UnknownResponseException("Got a response I don't know what to do with: " . $result->responseCode);
-        }
 
         //Interperet Response
         $results = json_decode($result->body, true);

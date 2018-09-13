@@ -18,6 +18,8 @@ class Model
     protected static $primaryKeyFieldName = 'id';
     protected static $serviceClassName = null;
     protected static $fields = [];
+    public static $readOnlyFields = [];
+
     protected $data = array();
 
     public function __construct(array $data = null, $authTokenKey = '')
@@ -102,6 +104,7 @@ class Model
         /** @var Model[] $value */
         foreach($this->data as $key => $value){
             if(isset(static::$fields[$key])){
+                /** Field details can be either a type (one of the constancts from the FieldTypes enum) or a 2 part array, the first part says "array" the second part is a class name.  Eventually the first part can be enum, with the 2nd part being a list of values, but this isn't done yet.  This will allow checking of values before making the call. */
                 $fieldDetails = static::$fields[$key];
                 if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == FieldTypes::AN_ARRAY){
                     $asArray[$key] = [];
@@ -116,6 +119,7 @@ class Model
                 }
             }
         }
+
         return $asArray;
     }
 }

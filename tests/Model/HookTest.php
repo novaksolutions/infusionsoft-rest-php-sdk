@@ -36,6 +36,29 @@ class HookTest extends TestCase
 
         $retrievedHook = HookService::get($hook->key);
         $this->assertEquals('https://www.altavista.com', $retrievedHook->hookUrl);
+
+        $retrievedHook->delete();
+    }
+
+    public function testDelete(){
+        $hook = new Hook();
+        $hook->eventKey = HookTypes::APPOINTMENT_ADD;
+        $hook->hookUrl = 'https://www.google.com';
+        $hook->save();
+
+        $retrievedHook = HookService::get($hook->key);
+        $this->assertEquals($hook->key, $retrievedHook->key);
+
+        $hooks = HookService::find();
+        $hookCount = count($hooks);
+
+        $retrievedHook->delete();
+
+        $hooks = HookService::find();
+        $this->assertEquals($hookCount - 1, count($hooks));
+
+        //This should return null, but currently throws a 500 exception...
+        $retrievedHook = HookService::get($hook->key);
     }
 
 }
