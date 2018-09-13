@@ -9,10 +9,12 @@
 namespace NovakSolutions\Infusionsoft\Model;
 
 
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+
 class ContactCompany extends Model
 {
     protected static $fields = [
-        "company_name" => Model::FIELD_TYPE_STRING,
-        "id" =>  Model::FIELD_TYPE_INT,
+        "company_name" => FieldTypes::STRING,
+        "id" =>  FieldTypes::INT,
     ];
 }

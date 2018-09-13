@@ -8,13 +8,12 @@
 
 namespace NovakSolutions\Infusionsoft\Service\Traits;
 
-use NovakSolutions\Infusionsoft\AssociativeArrayToApiModel;
-use NovakSolutions\Infusionsoft\Exception\FindException;
 use NovakSolutions\Infusionsoft\Exception\BadRequestException;
 use NovakSolutions\Infusionsoft\Exception\UnAuthorizedException;
 use NovakSolutions\Infusionsoft\Exception\UnknownResponseException;
 use NovakSolutions\Infusionsoft\Model\Model;
 use NovakSolutions\Infusionsoft\Registry;
+use NovakSolutions\Infusionsoft\Service\Service;
 use NovakSolutions\Infusionsoft\WebRequestResult;
 
 trait RetrieveTrait
@@ -25,9 +24,10 @@ trait RetrieveTrait
      * @param null $ascendingOrDescending
      * @param null $limit
      * @param null $offset
-     * @return Model[]
+     * @return Model
      * @throws \NovakSolutions\Infusionsoft\Exception\FindException
      * @throws \ReflectionException
+     * @throws \NovakSolutions\Infusionsoft\Exception\RestException
      */
 
     public static function get($id){
@@ -40,21 +40,7 @@ trait RetrieveTrait
         //Make Call...
         /** @var WebRequestResult $result */
         $result = Registry::$WebRequester->request($url, 'GET', $parameters, null);
-
-        $objects = null;
-        switch($result->responseCode){
-            case 596:
-                throw new BadRequestException("Unknown Service");
-            case 401:
-                throw new UnAuthorizedException("Got 401 response from Infusionsoft during call to " . static::$endPoint);
-            case 400:
-                throw new BadRequestException("Got Bad Request Exception");
-                break;
-            case 200:
-                break;
-            default:
-                throw new UnknownResponseException("Got a response I don't know what to do with: " . $result->responseCode);
-        }
+        static::throwExceptionIfError($result);
 
         //Interperet Response
         $objects = json_decode($result->body, true);

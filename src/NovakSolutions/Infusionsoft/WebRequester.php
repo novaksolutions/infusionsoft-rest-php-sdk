@@ -29,7 +29,7 @@ class WebRequester
         return in_array($requestVerb, ['POST', 'PUT', 'PATCH']);
     }
 
-    public function request($endPoint, $requestVerb, $payload, $accessToken = null)
+    public function request($endPoint, $requestVerb, $payload = null, $accessToken = null)
     {
         if($accessToken == null){
             $accessToken = Registry::$defaultAccessToken;
@@ -42,16 +42,23 @@ class WebRequester
         $ch = curl_init();
 
         $url = 'https://api.infusionsoft.com/crm/rest/v1' . $endPoint;
+
+        //Add Url Params
         $urlParams = [];
 
         if($this->tokenMethod == self::GET_PARAMETER){
             $urlParams['access_token'] = $accessToken;
         }
-        if(!self::needsPostBody($requestVerb)){
+
+        if(!self::needsPostBody($requestVerb) && $payload != null){
             $urlParams = array_merge($urlParams, $payload);
         }
-        $url .= '?' . http_build_query($urlParams);
 
+        if(count($urlParams) > 0) {
+            $url .= '?' . http_build_query($urlParams);
+        }
+
+        //Setup CURLOPTs
         curl_setopt($ch, CURLOPT_URL, $url);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -68,12 +75,22 @@ class WebRequester
         }
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        //Make Request
         $response = curl_exec($ch);
 
-
+        //Process Response
         $result = new WebRequestResult();
         $result->body = $response;
         $result->responseCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        Registry::$logger->debug($requestVerb . ': ' . $url);
+        if(self::needsPostBody($requestVerb)) {
+            Registry::$logger->debug("  REQUEST PAYLOAD: " . print_r($payload, true));
+        } else {
+            Registry::$logger->debug("  NO REQUEST PAYLOAD");
+        }
+        Registry::$logger->debug("  RESPONSE BODY: " . $result->body);
+        Registry::$logger->debug("  RESPONSE CODE: " . $result->responseCode);
 
         curl_close($ch);
 

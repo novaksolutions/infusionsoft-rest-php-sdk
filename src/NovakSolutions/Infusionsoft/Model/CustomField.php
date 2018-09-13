@@ -9,10 +9,12 @@
 namespace NovakSolutions\Infusionsoft\Model;
 
 
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+
 class CustomField extends Model
 {
     protected static $fields = [
-        "content" => Model::FIELD_TYPE_STRING,
-        "id" =>  Model::FIELD_TYPE_INT,
+        "content" => FieldTypes::STRING,
+        "id" =>  FieldTypes::INT,
     ];
 }

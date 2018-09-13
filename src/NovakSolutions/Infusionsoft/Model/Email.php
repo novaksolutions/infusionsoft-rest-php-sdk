@@ -8,6 +8,8 @@
 
 namespace NovakSolutions\Infusionsoft\Model;
 
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+
 /**
  * Class Contact
  * @package NovakSolutions\Infusionsoft\Model
@@ -17,17 +19,17 @@ namespace NovakSolutions\Infusionsoft\Model;
 class Email extends Model
 {
     protected static $fields = [
-        'contact_id' => Model::FIELD_TYPE_INT,
-        'headers' => Model::FIELD_TYPE_STRING,
-        'id' => Model::FIELD_TYPE_INT,
-        'opened_date' => Model::FIELD_TYPE_STRING,
-        'received_date' => Model::FIELD_TYPE_STRING,
-        'sent_date' => Model::FIELD_TYPE_STRING,
-        'sent_from_address' => Model::FIELD_TYPE_STRING,
-        'sent_from_reply_address' => Model::FIELD_TYPE_STRING,
-        'sent_to_address' => Model::FIELD_TYPE_STRING,
-        'sent_to_bcc_addresses' => Model::FIELD_TYPE_STRING,
-        'sent_to_cc_addresses' => Model::FIELD_TYPE_STRING,
-        'subject' => Model::FIELD_TYPE_STRING,
+        'contact_id' => FieldTypes::INT,
+        'headers' => FieldTypes::STRING,
+        'id' => FieldTypes::INT,
+        'opened_date' => FieldTypes::STRING,
+        'received_date' => FieldTypes::STRING,
+        'sent_date' => FieldTypes::STRING,
+        'sent_from_address' => FieldTypes::STRING,
+        'sent_from_reply_address' => FieldTypes::STRING,
+        'sent_to_address' => FieldTypes::STRING,
+        'sent_to_bcc_addresses' => FieldTypes::STRING,
+        'sent_to_cc_addresses' => FieldTypes::STRING,
+        'subject' => FieldTypes::STRING,
     ];
 }

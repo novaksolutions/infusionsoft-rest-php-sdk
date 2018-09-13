@@ -8,7 +8,6 @@
 
 namespace NovakSolutions\Infusionsoft\Service\Traits;
 
-use NovakSolutions\Infusionsoft\AssociativeArrayToApiModel;
 use NovakSolutions\Infusionsoft\Exception\FindException;
 use NovakSolutions\Infusionsoft\Exception\BadRequestException;
 use NovakSolutions\Infusionsoft\Exception\UnAuthorizedException;
@@ -63,19 +62,10 @@ trait ListTraitWithOrderBy
         //Make Call...
         /** @var WebRequestResult $result */
         $result = Registry::$WebRequester->request(static::$endPoint, 'GET', $parameters, null);
+        static::throwExceptionIfError($result);
 
         $objects = null;
-        switch($result->responseCode){
-            case 400:
-                throw new BadRequestException("Got Bad Request Exception");
-            case 401:
-                throw new UnAuthorizedException("Got 401 response from Infusionsoft during call to " . static::$endPoint);
-                break;
-            case 200:
-                break;
-            default:
-                throw new UnknownResponseException("Got a response I don't know what to do with: " . $result->responseCode);
-        }
+
 
         //Interperet Response
         $objects = json_decode($result->body, true);

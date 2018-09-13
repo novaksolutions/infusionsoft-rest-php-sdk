@@ -9,12 +9,14 @@
 namespace NovakSolutions\Infusionsoft\Model;
 
 
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+
 class PhoneNumber extends Model
 {
     protected static $fields = [
-        "extension" => Model::FIELD_TYPE_STRING,
-        "field" => Model::FIELD_TYPE_STRING,
-        "number" => Model::FIELD_TYPE_STRING,
-        "type" => Model::FIELD_TYPE_STRING
+        "extension" => FieldTypes::STRING,
+        "field" => FieldTypes::STRING,
+        "number" => FieldTypes::STRING,
+        "type" => FieldTypes::STRING
     ];
 }

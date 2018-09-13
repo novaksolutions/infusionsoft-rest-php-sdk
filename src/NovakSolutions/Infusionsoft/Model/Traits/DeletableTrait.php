@@ -7,18 +7,17 @@
  */
 namespace NovakSolutions\Infusionsoft\Model\Traits;
 
-trait SavableTrait
+use NovakSolutions\Infusionsoft\Exception\Exception;
+
+trait DeletableTrait
 {
-    public function save($reloadFromReturn = true){
+    public function delete(){
         $serviceClassName = static::$serviceClassName;
         $primaryKeyFieldName = static::$primaryKeyFieldName;
         if($this->$primaryKeyFieldName != null){
-            $serviceClassName::update($this->toArray());
+            $serviceClassName::delete($this->{static::$primaryKeyFieldName});
         } else {
-            $result = $serviceClassName::create($this->toArray());
-            if($reloadFromReturn) {
-                $this->fromArray($result->toArray());
-            }
+            throw new Exception("Cannot delete " . get_class($this) . ' it has no value for: ' . static::$primaryKeyFieldName);
         }
     }
 }

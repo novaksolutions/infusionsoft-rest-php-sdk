@@ -8,7 +8,6 @@
 
 namespace NovakSolutions\Infusionsoft\Service\Traits;
 
-use NovakSolutions\Infusionsoft\AssociativeArrayToApiModel;
 use NovakSolutions\Infusionsoft\Exception\FindException;
 use NovakSolutions\Infusionsoft\Exception\BadRequestException;
 use NovakSolutions\Infusionsoft\Exception\UnAuthorizedException;

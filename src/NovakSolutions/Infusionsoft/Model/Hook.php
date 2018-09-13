@@ -9,19 +9,35 @@
 namespace NovakSolutions\Infusionsoft\Model;
 
 
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 use NovakSolutions\Infusionsoft\Service\HookService;
+use NovakSolutions\Infusionsoft\Service\Traits\DeleteTrait;
+
+/**
+ * Class Hook
+ * @package NovakSolutions\Infusionsoft\Model
+ * @property string eventKey
+ * @property string hookUrl
+ * @property string key
+ * @property string status
+ */
 
 class Hook extends Model
 {
     use Traits\SavableTrait;
+    use Traits\DeletableTrait;
 
-    protected static $primaryKeyFieldName = 'key';
+    public static $primaryKeyFieldName = 'key';
     protected static $serviceClassName = HookService::class;
 
     protected static $fields = [
-        "eventKey" => Model::FIELD_TYPE_STRING,
-        "hookUrl" => Model::FIELD_TYPE_STRING,
-        "key" => Model::FIELD_TYPE_STRING,
-        "status" => Model::FIELD_TYPE_STRING
+        "eventKey" => FieldTypes::STRING,
+        "hookUrl" => FieldTypes::STRING,
+        "key" => FieldTypes::STRING,
+        "status" => FieldTypes::STRING
+    ];
+
+    public static $readOnlyFields = [
+        'key', 'status'
     ];
 }
