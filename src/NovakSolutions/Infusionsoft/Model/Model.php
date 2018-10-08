@@ -89,7 +89,7 @@ class Model
                 if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == FieldTypes::AN_ARRAY){
                     $this->$key = [];
                     foreach($value as $object){
-                        $this->$key[] = new $fieldDetails[1]($object);
+                        $this->{$key}[] = new $fieldDetails[1]($object);
                     }
                 } else {
                     $this->$key = $value;
