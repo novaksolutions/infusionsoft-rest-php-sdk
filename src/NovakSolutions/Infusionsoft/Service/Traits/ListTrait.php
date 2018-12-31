@@ -62,16 +62,16 @@ trait ListTrait
         $objects = null;
         switch($result->responseCode){
             case 596:
-                throw new BadRequestException("Unknown Service");
+                throw new BadRequestException("Unknown Service. " . "Error Message: " . $result->body, $result->responseCode);
             case 401:
-                throw new UnAuthorizedException("Got 401 response from Infusionsoft during call to " . static::$endPoint);
+                throw new UnAuthorizedException("Got 401 response from Infusionsoft during call to " . static::$endPoint . " Error Message: " . $result->body, $result->responseCode);
             case 400:
-                throw new BadRequestException("Got Bad Request Exception");
+                throw new BadRequestException("Got Bad Request Exception. Error Message: " . $result->body, $result->responseCode);
                 break;
             case 200:
                 break;
             default:
-                throw new UnknownResponseException("Got a response I don't know what to do with: " . $result->responseCode);
+                throw new UnknownResponseException("Got a response I don't know what to do with: " . $result->responseCode . " Error Message: " . $result->body, $result->responseCode);
         }
 
         //Interperet Response

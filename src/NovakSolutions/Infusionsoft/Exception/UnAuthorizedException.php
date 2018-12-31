@@ -16,7 +16,9 @@ class UnAuthorizedException extends Exception
      * UnAuthorizedException constructor.
      * @param string $string
      */
-    public function __construct($string)
+    public function __construct($string = null, $code = null, Throwable $previous = null)
     {
+        parent::__construct($string, $code, $previous);
     }
+
 }
