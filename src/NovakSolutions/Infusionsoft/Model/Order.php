@@ -25,7 +25,7 @@ class Order extends Model
 
     protected static $fields = [
         'allow_payment' => FieldTypes::BOOL,
-        'contact' => [OrderContact::class],
+        'contact' => OrderContact::class,
         'creation_date' => FieldTypes::STRING,
         'id' => FieldTypes::INT,
         'lead_affiliate_id' => FieldTypes::INT,

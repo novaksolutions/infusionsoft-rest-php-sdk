@@ -11,11 +11,13 @@ namespace NovakSolutions\Infusionsoft\Service;
 use NovakSolutions\Infusionsoft\Model\Order;
 use NovakSolutions\Infusionsoft\Model\PaymentPlan;
 use NovakSolutions\Infusionsoft\Registry;
+use NovakSolutions\Infusionsoft\Service\Traits\RetrieveTrait;
 use NovakSolutions\Infusionsoft\WebRequestResult;
 
 class OrderService extends Service
 {
     use Traits\ListTraitWithOrderBy;
+    use Traits\RetrieveTrait;
 //    use Traits\CreateTrait; -- not setup to use Create yet, but the Model should work with Create with a few adjustments to only include certain fields when Creating
 
     public static $endPoint = '/orders';
