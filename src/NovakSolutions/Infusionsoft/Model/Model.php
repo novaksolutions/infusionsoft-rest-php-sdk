@@ -91,6 +91,8 @@ class Model
                     foreach($value as $object){
                         $this->{$key}[] = new $fieldDetails[1]($object);
                     }
+                } elseif (strpos($fieldDetails, "NovakSolutions\Infusionsoft\Model") === 0){
+                    $this->{$key} = new $fieldDetails($value);
                 } else {
                     $this->$key = $value;
                 }
