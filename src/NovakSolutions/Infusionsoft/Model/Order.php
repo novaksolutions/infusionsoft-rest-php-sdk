@@ -11,11 +11,8 @@ use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 use NovakSolutions\Infusionsoft\Service\OrderService;
 
 /**
- * Class Contact
+ * Class Order
  * @package NovakSolutions\Infusionsoft\Model
- * @property Address[] addresses
- * @property \DateTime birthday
- * @property EmailAddress[] email_addresses
  * @property int id
  */
 class Order extends Model
