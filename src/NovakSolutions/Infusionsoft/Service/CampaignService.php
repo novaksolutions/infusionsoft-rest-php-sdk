@@ -31,6 +31,11 @@ class CampaignService extends Service
         'active_contact_count',
         'date_created',
     );
+    
+    public static function getCampaign($id)
+    {
+        return self::get($id, ['optional_properties' => 'goals,sequences']);
+    }
 
     public static function achieveApiGoal($integration, $callName, $contactId, $accessToken = null){
         $url = static::$endPoint . '/goals/' . $integration . '/' . $callName;

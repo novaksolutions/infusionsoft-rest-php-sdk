@@ -30,9 +30,8 @@ trait RetrieveTrait
      * @throws \NovakSolutions\Infusionsoft\Exception\RestException
      */
 
-    public static function get($id){
+    public static function get($id, $parameters = []){
         //Build Request
-        $parameters = [];
 
         //Replace question mark(s) in url with criteria if it's present
         $url = static::$endPoint . '/' . $id;
