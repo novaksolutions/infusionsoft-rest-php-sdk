@@ -34,7 +34,7 @@ trait ListTraitWithOrderBy
         $parameters = [];
         foreach($criteria as $criteriaFieldName => $criterion){
             if(!in_array($criteriaFieldName, static::$findByFields)){
-                throw new FindException("Invalid field name: " . $criteriaFieldName . ' in service ' . (new \ReflectionClass(self))->getShortName());
+                throw new FindException("Invalid field name: " . $criteriaFieldName . ' in service ' . (new \ReflectionClass(self::class))->getShortName());
             }
 
             $parameters[$criteriaFieldName] = $criterion;

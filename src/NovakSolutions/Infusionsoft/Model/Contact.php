@@ -27,7 +27,7 @@ class Contact extends Model
         'addresses' => ['array', Address::class],
         "anniversary" => FieldTypes::DATETIME,
         "birthday" => FieldTypes::DATETIME,
-        'company' => [ContactCompany::class],
+        'company' => ContactCompany::class,
         "contact_type" => FieldTypes::STRING,
         'custom_fields' => ['array', CustomField::class],
         "date_created" => FieldTypes::DATETIME,

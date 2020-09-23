@@ -14,6 +14,7 @@ class ContactService extends Service
 {
     use Traits\ListTraitWithOrderBy;
     use Traits\CreateTrait;
+    use Traits\RetrieveTrait;
 
     public static $endPoint = '/contacts';
     public static $arrayKey = 'contacts';
