@@ -14,6 +14,26 @@ use NovakSolutions\Infusionsoft\Service\OrderService;
  * Class Order
  * @package NovakSolutions\Infusionsoft\Model
  * @property int id
+ * @property bool allow_payment
+ * @property Contact contact
+ * @property \DateTime creation_date
+ * @property int lead_affiliate_id
+ * @property \DateTime modification_date
+ * @property string notes
+ * @property \DateTime order_date
+ * @property OrderItem[] order_items
+ * @property PaymentPlan payment_plan
+ * @property bool recurring
+ * @property int refund_total
+ * @property int sales_affiliate_id
+ * @property OrderShipping shipping_information
+ * @property string status
+ * @property string terms
+ * @property string title
+ * @property float total
+ * @property float total_due
+ * @property float total_paid
+
  */
 class Order extends Model
 {
@@ -23,7 +43,7 @@ class Order extends Model
     protected static $fields = [
         'allow_payment' => FieldTypes::BOOL,
         'contact' => OrderContact::class,
-        'creation_date' => FieldTypes::STRING,
+        'creation_date' => FieldTypes::DATETIME,
         'id' => FieldTypes::INT,
         'lead_affiliate_id' => FieldTypes::INT,
         'modification_date' => FieldTypes::STRING,
