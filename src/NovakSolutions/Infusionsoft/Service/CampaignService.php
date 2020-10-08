@@ -31,6 +31,14 @@ class CampaignService extends Service
         'active_contact_count',
         'date_created',
     );
+
+    /**
+     * @param $id
+     * @return \NovakSolutions\Infusionsoft\Model\Campaign
+     * @throws \NovakSolutions\Infusionsoft\Exception\FindException
+     * @throws \NovakSolutions\Infusionsoft\Exception\RestException
+     * @throws \ReflectionException
+     */
     
     public static function getCampaign($id)
     {

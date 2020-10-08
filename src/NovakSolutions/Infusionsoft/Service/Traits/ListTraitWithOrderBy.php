@@ -24,7 +24,7 @@ trait ListTraitWithOrderBy
      * @param null $ascendingOrDescending
      * @param null $limit
      * @param null $offset
-     * @return Model[]
+     * @return \NovakSolutions\Infusionsoft\Model\Campaign[]
      * @throws \NovakSolutions\Infusionsoft\Exception\FindException
      * @throws \ReflectionException
      */
