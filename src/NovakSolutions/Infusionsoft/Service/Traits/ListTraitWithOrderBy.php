@@ -24,7 +24,7 @@ trait ListTraitWithOrderBy
      * @param null $ascendingOrDescending
      * @param null $limit
      * @param null $offset
-     * @return Model[]
+     * @return \NovakSolutions\Infusionsoft\Model\Campaign[]
      * @throws \NovakSolutions\Infusionsoft\Exception\FindException
      * @throws \ReflectionException
      */
@@ -34,7 +34,7 @@ trait ListTraitWithOrderBy
         $parameters = [];
         foreach($criteria as $criteriaFieldName => $criterion){
             if(!in_array($criteriaFieldName, static::$findByFields)){
-                throw new FindException("Invalid field name: " . $criteriaFieldName . ' in service ' . (new \ReflectionClass(self))->getShortName());
+                throw new FindException("Invalid field name: " . $criteriaFieldName . ' in service ' . (new \ReflectionClass(self::class))->getShortName());
             }
 
             $parameters[$criteriaFieldName] = $criterion;

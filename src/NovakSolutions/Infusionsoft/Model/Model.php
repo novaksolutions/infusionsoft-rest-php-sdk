@@ -86,11 +86,13 @@ class Model
         foreach($data as $key => $value){
             if(isset(static::$fields[$key])){
                 $fieldDetails = static::$fields[$key];
-                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == FieldTypes::AN_ARRAY){
+                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model\\") === 0 && $fieldDetails[0] == FieldTypes::AN_ARRAY){
                     $this->$key = [];
                     foreach($value as $object){
                         $this->{$key}[] = new $fieldDetails[1]($object);
                     }
+                } elseif (strpos($fieldDetails, "NovakSolutions\Infusionsoft\Model\\") === 0){
+                    $this->{$key} = new $fieldDetails($value);
                 } else {
                     $this->$key = $value;
                 }
@@ -106,7 +108,7 @@ class Model
             if(isset(static::$fields[$key])){
                 /** Field details can be either a type (one of the constancts from the FieldTypes enum) or a 2 part array, the first part says "array" the second part is a class name.  Eventually the first part can be enum, with the 2nd part being a list of values, but this isn't done yet.  This will allow checking of values before making the call. */
                 $fieldDetails = static::$fields[$key];
-                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model") === 0 && $fieldDetails[0] == FieldTypes::AN_ARRAY){
+                if(is_array($fieldDetails) && count($fieldDetails) > 1 && strpos($fieldDetails[1], "NovakSolutions\Infusionsoft\Model\\") === 0 && $fieldDetails[0] == FieldTypes::AN_ARRAY){
                     $asArray[$key] = [];
                     foreach($value as $object){
                       $asArray[$key][] = $object->toArray();

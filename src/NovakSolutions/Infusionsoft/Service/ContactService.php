@@ -14,6 +14,7 @@ class ContactService extends Service
 {
     use Traits\ListTraitWithOrderBy;
     use Traits\CreateTrait;
+    use Traits\RetrieveTrait;
 
     public static $endPoint = '/contacts';
     public static $arrayKey = 'contacts';
@@ -25,7 +26,11 @@ class ContactService extends Service
         'email'
     );
 
-    public static function findEmailsForContact($contactId, $email, $limit, $offset){
-        return ContactEmailService::find([], $limit, $offset);
+    public static function findEmailsForContact($contactId, $email = null, $limit = null, $offset = null){
+        $criteria = [
+            'contactId' => $contactId,
+            'email' => $email,
+        ];
+        return ContactEmailService::find($criteria, $limit, $offset);
     }
 }

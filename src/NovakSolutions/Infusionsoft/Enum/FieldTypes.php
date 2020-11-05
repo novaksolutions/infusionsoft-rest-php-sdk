@@ -14,6 +14,9 @@ class FieldTypes
     //ARRAY can't be the name of a constant until php 7...
     const AN_ARRAY = 'array';
     const DATETIME = 'datetime';
+    const DATE = 'date';
     const INT = 'int';
     const STRING = 'string';
+    const BOOL = 'bool';
+    const FLOAT = 'float';
 }
