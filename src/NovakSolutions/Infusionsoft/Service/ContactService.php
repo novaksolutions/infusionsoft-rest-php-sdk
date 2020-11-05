@@ -26,7 +26,11 @@ class ContactService extends Service
         'email'
     );
 
-    public static function findEmailsForContact($contactId, $email, $limit, $offset){
-        return ContactEmailService::find([], $limit, $offset);
+    public static function findEmailsForContact($contactId, $email = null, $limit = null, $offset = null){
+        $criteria = [
+            'contactId' => $contactId,
+            'email' => $email,
+        ];
+        return ContactEmailService::find($criteria, $limit, $offset);
     }
 }
