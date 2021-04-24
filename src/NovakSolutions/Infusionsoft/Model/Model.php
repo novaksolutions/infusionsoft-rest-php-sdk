@@ -92,7 +92,7 @@ class Model
                         $this->{$key}[] = new $fieldDetails[1]($object);
                     }
                 } elseif (strpos($fieldDetails, "NovakSolutions\Infusionsoft\Model\\") === 0){
-                    $this->{$key} = new $fieldDetails($value);
+                    $this->{$key} = new $fieldDetails((array) $value);
                 } else {
                     $this->$key = $value;
                 }

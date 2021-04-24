@@ -7,6 +7,7 @@
  */
 
 namespace NovakSolutions\Infusionsoft\Model;
+use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 use NovakSolutions\Infusionsoft\Service\ContactService;
 
 /**
@@ -15,6 +16,9 @@ use NovakSolutions\Infusionsoft\Service\ContactService;
  * @property Address[] addresses
  * @property \DateTime birthday
  * @property EmailAddress[] email_addresses
+ * @property PhoneNumber[] phone_numbers
+ * @property string family_name
+ * @property string given_name
  * @property int id
  */
 class Contact extends Model
@@ -32,6 +36,8 @@ class Contact extends Model
         'custom_fields' => ['array', CustomField::class],
         "date_created" => FieldTypes::DATETIME,
         'email_addresses' => ['array', EmailAddress::class],
+        'family_name' => FieldTypes::STRING,
+        'given_name' => FieldTypes::STRING,
         'fax_numbers' => ['array', FaxNumber::class],
         'id' => FieldTypes::INT,
         'phone_numbers' => ['array', PhoneNumber::class],
