@@ -17,6 +17,8 @@ class Registry
     /** @var SimpleConsoleLogger  $logger */
     public static $logger = null;
     public static $defaultAccessToken = 'ta9e4fuj6bfq36nfx64h7wyx';
+    public static $appName = '';
+
     public static function init(){
         static::$WebRequester = new WebRequester();
         static::$logger = new SimpleConsoleLogger();
