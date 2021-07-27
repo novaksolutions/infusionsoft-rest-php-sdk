@@ -16,7 +16,7 @@
         "psr-4": { "NovakSolutions\\Infusionsoft\\": "tests" }
     },
     "require": {
-        "php": "^5.5 || ^7.0",
+        "php": "^5.5 || ^7.0 || ^8.0",
         "ext-curl": "*",
         "ext-json": "*"
     },
