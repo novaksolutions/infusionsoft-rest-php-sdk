@@ -11,12 +11,4 @@ namespace NovakSolutions\Infusionsoft\Exception;
 
 class UnknownResponseException extends Exception
 {
-
-    /**
-     * UnAuthorizedException constructor.
-     * @param string $string
-     */
-    public function __construct($string)
-    {
-    }
 }
